@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>행렬계산기</title>
+    <link rel="stylesheet" href="./행렬계산기css/matrix.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../matrix_img/hang.png">
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+}
+
+html, body {
+  font-weight: bold;
+  width: 100%;
+  background-color: white;
+  color: rgb(0, 41, 68);
+  font-family: 'Gothic A1', sans-serif;
+}
+
+body {
+  background-color: white;
+}
+
+.wrap {
+  margin: 10rem auto;
+  background-color: rgba(214, 214, 214, 0.3);
+  width: 80%;
+  height: 100%;
+  border-radius: 2rem;
+  text-align: center;
+  box-shadow: 0.1rem 0.1rem 1rem rgb(117, 117, 117);
+}
+
+.wrap .main {
+  padding-top: 5rem;
+  font-size: 3rem;
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+}
+
+.wrap .arithmetic {
+  margin: 0 auto;
+  width: 60rem;
+  height: 4rem;
+  margin-bottom: 5rem;
+}
+
+.wrap .arithmetic .xyPlus, .wrap .arithmetic .xyMinus, .wrap .arithmetic .xyMultiply {
+  border-radius: 1rem;
+  background-color: rgb(0, 41, 68);
+  color: rgb(241, 255, 169);
+  line-height: 5rem;
+  width: 15rem;
+  height: 5rem;
+  float: left;
+  margin-left: 3rem;
+  margin-right: 1rem;
+  font-size: 2rem;
+}
+
+.wrap .arithmetic .xyPlus:hover, .wrap .arithmetic .xyMinus:hover, .wrap .arithmetic .xyMultiply:hover {
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+.wrap .firstArray {
+  margin-left: 0.1rem;
+  width: 49%;
+  float: left;
+}
+
+.wrap .firstArray .makeFirstArray, .wrap .firstArray .makeFirstArray1 {
+  margin: 1rem auto;
+  width: 25rem;
+  height: 5rem;
+  margin-top: 2rem;
+  line-height: 5rem;
+  border-radius: 1rem;
+  background-color: rgb(0, 41, 68);
+  font-size: 2rem;
+  color: white;
+}
+
+.wrap .firstArray .makeFirstArray:hover, .wrap .firstArray .makeFirstArray1:hover {
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  -webkit-box-shadow: 0.1rem 0.1rem 0.5rem blue;
+          box-shadow: 0.1rem 0.1rem 0.5rem blue;
+}
+.wrap .WrapArray .allArray {
+  width: 5rem;
+  height: 3rem;
+  font-size: 2rem;
+  border: 0.2rem solid gray;
+  margin-left: 1.5rem;
+  text-align: right;
+  border-radius: 0.5rem;
+  outline: none;
+}
+.wrap .firstArray .aArray {
+  width: 100%;
+  height: 100%;
+}
+
+.wrap .firstArray .aArray .hang {
+  width: 4rem;
+  height: 4rem;
+  margin: 0.2rem;
+  text-align: right;
+  font-size: 1.5rem;
+  color: #666363;
+  border: 0;
+}
+
+.wrap .secondArray {
+  margin-left: 0.75rem;
+  width: 50%;
+  float: left;
+}
+
+.wrap .secondArray .makeSecondArray, .wrap .secondArray .makeSecondArray1 {
+  margin: 1rem auto;
+  width: 25rem;
+  height: 5rem;
+  margin-top: 2rem;
+  line-height: 5rem;
+  border-radius: 1rem;
+  background-color: rgb(0, 41, 68);
+  font-size: 2rem;
+  color: white;
+}
+
+.wrap .secondArray .makeSecondArray:hover, .wrap .secondArray .makeSecondArray1:hover {
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  -webkit-box-shadow: 0.1rem 0.1rem 0.5rem blue;
+          box-shadow: 0.1rem 0.1rem 0.5rem blue;
+}
+
+.wrap .secondArray .bArray {
+  width: 100%;
+  height: 100%;
+}
+
+.wrap .secondArray .bArray .hang {
+  width: 4rem;
+  height: 4rem;
+  margin: 0.2rem;
+  font-size: 1.5rem;
+  text-align: right;
+  color: #666363;
+  border: 0;
+}
+
+.wrap .result {
+  font-size: 3rem;
+  width: 100%;
+  height: 100%;
+  clear: both;
+  margin-top: 30rem;
+  margin-bottom: 5rem;
+  padding-bottom: 5rem;
+}
+
+.wrap .result .resultSum {
+  width: 100%;
+  height: 100%;
+}
+
+.wrap .result .resultSum .hang {
+  width: 5rem;
+  height: 5rem;
+  margin: 0.2rem;
+  text-align: right;
+  font-size: 1.5rem;
+  padding-right: 0.5rem;
+  color: #666363;
+  border: 0;
+}
+
+.wrapMo {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0,-50%);
+}
+
+.wrapMo .tenUnder, .wrapMo .sameSame {
+  border-radius: 5rem;
+  background-color: rgb(255, 255, 255);
+  width: 50rem;
+  height: 30rem;
+  border: 1px solid black;
+  position: absolute;
+  top: 50%;
+  left: 49.6%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: none;
+}
+
+.wrapMo .tenUnder .underPz, .wrapMo .sameSame .underPz {
+  font-weight: bold;
+  position: absolute;
+  text-align: center;
+  font-size: 3rem;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  color: rgb(56, 56, 56);
+}
+
+.wrapMo .tenUnder .samePz, .wrapMo .sameSame .samePz {
+  font-weight: bold;
+  position: absolute;
+  text-align: center;
+  font-size: 3rem;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  color: rgb(56, 56, 56);
+}
+
+.wrapMo .tenUnder .underButton, .wrapMo .tenUnder .sameButton, .wrapMo .sameSame .underButton, .wrapMo .sameSame .sameButton {
+  width: 8rem;
+  height: 5rem;
+  font-size: 2rem;
+  position: absolute;
+  bottom: 2rem;
+  right: 50%;
+  border-radius: 1rem;
+  transform: translate(50%,0);
+}
+.hangRR{
+  font-weight: bold;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: inline-block;
+  color: rgb(0, 41, 68);
+  transform: translate(0,0.5rem);
+  font-size: 2.5rem;
+  line-height: 5rem;
+}
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <h1 class="main">행렬 계산기</h1>
+    <div id="arithmetic" class="arithmetic">
+      <div id="xyPlus" class="xyPlus XY">더하기</div>
+      <div id="xyMinus" class="xyMinus XY">빼기</div>
+      <div id="xyMultiply" class="xyMultiply XY">곱하기</div>
+    </div>
+    <div class="firstArray WrapArray">
+      <input id="firstXarray" class="firstXarray allArray" type="number"  max="10" min="1" tabindex="10"><div class="hangRR">행</div>
+      <input id="firstYarray" class="firstYarray allArray" type="number"  max="10" min="1" tabindex="20"><div class="hangRR">열</div>
+      <div id="makeFirstArray" class="makeFirstArray">A 행렬 랜덤생성</div>
+      <div id="makeFirstArray1" class="makeFirstArray1">A 행렬 직접생성</div>
+      <div id="aArray" class="aArray"></div>
+    </div>
+    <div class="secondArray WrapArray">
+      <input id="secondXarray" class="secondXarray allArray" type="number" max="10" min="1" tabindex="30"><div class="hangRR">행</div>
+      <input id="secondYarray" class="secondYarray allArray" type="number" max="10" min="1" tabindex="40"><div class="hangRR">열</div>
+      <div id="makeSecondArray" class="makeSecondArray">B 행렬 랜덤생성</div>
+      <div id="makeSecondArray1" class="makeSecondArray1">B 행렬 직접생성</div>
+      <div id="bArray" class="bArray"></div>
+    </div>
+    <h1 id="result" class="result">결과
+      <div id="resultSum" class="resultSum"></div>
+    </h1>
+</div>
+<div class="wrapMo">
+    <div id="tenUnder" class="tenUnder">
+        <div class="underPz">1이상 10이하 <br><br> 숫자로 설정해주세요.</div>
+        <button id="underButton" class="underButton" >닫기</button>
+    </div>
+    <div id="sameSame" class="sameSame">
+        <div class="samePz">양 행렬의 값이 같아야 합니다!</div>
+        <button id="sameButton" class="sameButton" >닫기</button>
+    </div>
+    <div id="sameSame2" class="sameSame">
+      <div class="samePz">A의 열과 B의 행이 같아야 합니다!</div>
+      <button id="sameButton2" class="sameButton" >닫기</button>
+  </div>
+  <div id="sameSame3" class="sameSame">
+    <div class="samePz">지수 표기 혹은 공란은 <br><br>허용되지 않습니다!</div>
+    <button id="sameButton3" class="sameButton" >닫기</button>
+</div>
+</div>
+<script>
+let makeFirstArray = document.querySelector("#makeFirstArray");
+let makeFirstArray1 = document.querySelector("#makeFirstArray1");
+let makeSecondArray = document.querySelector("#makeSecondArray");
+let makeSecondArray1 = document.querySelector("#makeSecondArray1");
+let randomNumber = document.querySelector("#randomNumber");
+let xyPlus = document.querySelector("#xyPlus");
+let xyMinus = document.querySelector("#xyMinus");
+let xyMultiply = document.querySelector("#xyMultiply");
+let tenUnder = document.querySelector("#tenUnder");
+let underButton = document.querySelector("#underButton");
+let sameSame = document.querySelector("#sameSame");
+let sameButton = document.querySelector("#sameButton");
+let sameButton2 = document.querySelector("#sameButton2");
+let sameButton3 = document.querySelector("#sameButton3");
+let allArray = document.querySelectorAll(".allArray");
+            /* 행렬 만들기 시작 */
+class MakeArray {
+  constructor() {
+
+  }
+    Make = function(someArray, name, Xarray, Yarray) {
+        let i = 1;
+        someArray.innerHTML = "";
+        while(i < Xarray * Yarray + 1) {
+            someArray.innerHTML += '<input id='+name+i+' " class="hang" type="number" value="' + (Math.floor( Math.random() * 99 - 1 + 1 ) + 1) + '"></input>';
+            if(i % (Yarray) == 0) {
+                someArray.innerHTML += '<br>';
+        }
+        i++;
+      }
+  }
+}
+class MakeArray2 {
+  constructor() {
+    
+  }
+    Make2 = function(someArray, name, Xarray, Yarray) {
+    let i = 1;
+    someArray.innerHTML = "";
+    while(i <  Xarray * Yarray + 1) {
+        someArray.innerHTML += '<input id='+name+i+' " class="hang" type="number"></input>';
+        if(i % (Yarray) == 0) {
+            someArray.innerHTML += '<br>';
+        }
+        i++;
+    }
+}
+}
+                /* 랜덤 행렬 */
+let MakeFirst = new MakeArray();
+makeFirstArray.addEventListener('click', function() {
+    let aArray = document.querySelector("#aArray");
+    let firstXarray = parseInt(document.querySelector("#firstXarray").value);
+    let firstYarray = parseInt(document.querySelector("#firstYarray").value);
+    MakeFirst.Make(aArray,"hangA", firstXarray, firstYarray);
+}); 
+
+let MakeSecond = new MakeArray();
+makeSecondArray.addEventListener('click', function() {
+    let bArray = document.querySelector("#bArray");
+    let secondXarray = parseInt(document.querySelector("#secondXarray").value);
+    let secondYarray = parseInt(document.querySelector("#secondYarray").value);
+    MakeSecond.Make(bArray,"hangB", secondXarray, secondYarray);
+});
+                /* 빈 행렬 */
+let MakeFirst1 = new MakeArray2();
+makeFirstArray1.addEventListener('click', function() {
+    let aArray = document.querySelector("#aArray");
+    let firstXarray = parseInt(document.querySelector("#firstXarray").value);
+    let firstYarray = parseInt(document.querySelector("#firstYarray").value);
+    MakeFirst1.Make2(aArray,"hangA", firstXarray, firstYarray)
+});
+
+let MakeSecond1 = new MakeArray2();
+makeSecondArray1.addEventListener('click', function() {
+    let bArray = document.querySelector("#bArray");
+    let secondXarray = parseInt(document.querySelector("#secondXarray").value);
+    let secondYarray = parseInt(document.querySelector("#secondYarray").value);
+    MakeSecond1.Make2(bArray,"hangB", secondXarray, secondYarray)
+});
+                
+             /* 행렬 만들기 끝 */
+
+             /* 행렬 계산 시작 */
+this.addEventListener('click', function(e) {
+    let resultSum = document.querySelector("#resultSum");
+    let firstXarray = parseInt(document.querySelector("#firstXarray").value);
+    let firstYarray = parseInt(document.querySelector("#firstYarray").value);
+    let secondXarray = parseInt(document.querySelector("#secondXarray").value);
+    let secondYarray = parseInt(document.querySelector("#secondYarray").value);
+    let hang = document.querySelectorAll(".hang");
+
+    if (e.target.id == "xyPlus"){
+    let k = 1;
+    resultSum.innerHTML = "";
+    while(k < firstXarray * firstYarray + 1) {
+        resultSum.innerHTML += '<input id="hangC'+ k +'" class="hang hangC" type="text" readonly></input>';
+        if(k % (firstYarray) == 0) {
+            resultSum.innerHTML += '<br>';
+        }
+        k++;
+    }
+    if(firstXarray >= 11 || firstXarray < 1 || firstYarray >= 11 || firstYarray < 1 ){
+        tenUnder.style.display = "block";
+        someArray.innerHTML = "";
+    }if(firstXarray != secondXarray || firstYarray != secondYarray){
+        sameSame.style.display = "block";
+        resultSum.innerHTML = "";
+    }    
+    let n = 1;
+    let cumma = 0;
+    while(n <= firstXarray * firstYarray){
+        cumma =  parseInt(window['hangA'+n].value) + parseInt(window['hangB'+n].value);
+        window['hangC'+n].value = cumma.toLocaleString('kr');
+        if(window['hangC' + n].value == -0){
+            window['hangC' + n].value = 0;
+        }
+      
+        n++;
+    }   
+    let num = /[0-9]/;
+    let eE = /[eE]/;
+    let q = 0;
+    let hang = document.querySelectorAll(".hang");
+      while(q < hang.length){
+        if(!num.test(parseInt(hang[q].value)) || eE.test((hang[q].value))){
+        sameSame3.style.display = "block";
+        resultSum.innerHTML = "";
+      }
+      q++;
+    }        
+}
+if (e.target.id == "xyMinus"){
+    let k = 1;
+    resultSum.innerHTML = "";
+    while(k < firstXarray * firstYarray + 1) {
+        resultSum.innerHTML += '<input id="hangC'+ k +'" class="hang" type="text hangC" readonly></input>';
+        if(k % (firstYarray) == 0) {
+            resultSum.innerHTML += '<br>';
+        }
+        k++;
+    } 
+    if(firstXarray >= 11 || firstXarray < 1 || firstYarray >= 11 || firstYarray < 1 ){
+        tenUnder.style.display = "block";
+        someArray.innerHTML = "";
+    }if(firstXarray != secondXarray || firstYarray != secondYarray){
+        sameSame.style.display = "block";
+        resultSum.innerHTML = "";
+    }     
+    let n = 1;
+    let cumma = 0;
+    while(n <= firstXarray * firstYarray){
+        cumma = parseInt(window['hangA'+n].value) - parseInt(window['hangB'+n].value);
+        window['hangC'+n].value = cumma.toLocaleString('kr');
+        if(window['hangC' + n].value == -0){
+            window['hangC' + n].value = 0;
+        }
+        n++;
+        }
+    let num = /[0-9]/;
+    let eE = /[eE]/;
+    let q = 0;
+    let hang = document.querySelectorAll(".hang");
+      while(q < hang.length){
+        if(!num.test(parseInt(hang[q].value)) || eE.test((hang[q].value))){
+        sameSame3.style.display = "block";
+        resultSum.innerHTML = "";
+      }
+      q++;
+    }    
+}
+if (e.target.id == "xyMultiply"){
+    if(firstYarray != secondXarray) {
+      sameSame2.style.display = "block";
+    }else{
+    let m = 1;
+    resultSum.innerHTML = "";
+        while(m <  firstXarray * secondYarray + 1) {
+            resultSum.innerHTML += '<input id="hangC'+ m +'" class="hang hangC" type="text" readonly></input>';
+            if(m % (secondYarray) == 0) {
+                resultSum.innerHTML += '<br>';
+            }
+            m++;
+        }
+    if(firstYarray != secondXarray){
+        sameSame.style.display = "block";
+        resultSum.innerHTML = "";
+    }
+    let firstFun = () => {
+        let i = 1;
+        let j = 1;
+        let firstOne = [];
+        let firstTwo = [];
+        let firstThree = [];
+        while(i < firstXarray * firstYarray+1) {
+            firstOne.push(window['hangA'+ i].value);
+            i++;
+        }
+        if(firstYarray > firstXarray || firstXarray == firstYarray){
+        while(j < firstYarray+1){
+            let k = 1;
+            while(k < firstYarray +1){
+                firstTwo.push(firstOne.shift());
+                k++;
+            }
+            j++;
+            firstThree.push(firstTwo);
+            firstTwo = [];
+        }
+    }else if(firstXarray > firstYarray){
+        while(j < firstXarray+1){
+            let k = 1;
+            while(k < firstYarray +1){
+                firstTwo.push(firstOne.shift());
+                k++;
+            }
+            j++;
+            firstThree.push(firstTwo);
+            firstTwo = [];
+        }
+    }
+        return firstThree;
+    }
+    let secondFun = () => {
+        let i = 1;
+        let j = 0;
+        let secondOne = [];
+        let secondTwo = [];
+        let secondThree = [];
+        while(i < secondXarray * secondYarray+1) {
+            secondOne.push(window['hangB'+ i].value);
+            i++;
+        }
+        while(j < secondYarray){
+            let k = 0;
+            while(k < secondXarray * secondYarray){
+                secondTwo.push(secondOne[j+k]);
+                k = k+secondYarray;
+            }
+            secondThree.push(secondTwo);
+            secondTwo = [];
+            j++;
+        }
+        return secondThree;
+    }
+    
+    let i = 0;
+    let resultMul = 0;
+    let rere = [];
+
+    while(i < firstXarray){
+        let j = 0;
+        while(j < secondYarray){
+            let k = 0;
+            while(k < secondXarray){
+                resultMul = resultMul + firstFun()[i][k] * secondFun()[j][k];
+                k++;
+            }
+            rere.push(resultMul);
+
+            resultMul = 0;
+            j++;
+        }
+        i++;
+    }
+    let l = 1;
+    let cumma = 0;
+    while(l < firstXarray * secondYarray + 1){
+        cumma = (rere[l-1]);
+            window['hangC'+l].value = cumma.toLocaleString('kr');
+        l++;
+    } 
+  }
+    let num = /[0-9]/;
+    let eE = /[eE]/;
+    let q = 0;
+    let hang = document.querySelectorAll(".hang");
+      while(q < hang.length){
+        if(!num.test(parseInt(hang[q].value)) || eE.test((hang[q].value))){
+        sameSame3.style.display = "block";
+        resultSum.innerHTML = "";
+      }
+      q++;
+    }    
+  }
+});
+
+
+this.addEventListener("click", () => {
+    tenUnder.style.display = "none";
+});
+sameButton.addEventListener("click", () => {
+    sameSame.style.display = "none";
+})
+sameButton2.addEventListener("click", () => {
+  sameSame2.style.display = "none";
+})
+sameButton3.addEventListener("click", () => {
+  sameSame3.style.display = "none";
+})
+
+
+let num = /[0-9]/;
+let startM = /^-/;
+  for(let i = 0; i < allArray.length; i++) {
+    allArray[i].addEventListener("keyup",()=>{
+    if(!num.test(allArray[i].value) || startM.test(allArray[i].value)) {
+      allArray[i].value = "";
+    }if(allArray[i].value > 10) {
+      allArray[i].value = 1;
+      tenUnder.style.display = "block";
+    }
+    if(allArray[i].value[0] == 0) {
+      allArray[i].value = 1;
+    }
+  })
+}
+
+
+
+</script>
+</body>
+</html>
